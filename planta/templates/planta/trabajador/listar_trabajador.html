@@ -1,0 +1,38 @@
+{%extends "planta/base.html"%} {%load static%} {%block titulo%} Trabajadores {%endblock%} {%block contenedor%}
+
+
+
+
+<h1><b>Trabajadores</b></h1>
+<button><a class="navbar-brand" href="{% url 'planta:formularioTrabajador' %}">Agregar</a></button> {% if messages %} {% for message in messages %}
+<div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}dark{% endif %}" role="alert"> {{ message }} </div>
+{% endfor %} {% endif %}
+
+
+<table class="table" border="2px">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+
+        </tr>
+    </thead>
+
+    {%for t in datos %}
+    <tr>
+        <td>{{t.id}}</td>
+        <td>{{t.nombre}}</td>
+        <td>{{t.apellido}}</td>
+        <td>{{t.cedula}}</td>
+        <td>{{t.Correo}}</td>
+
+    </tr>
+
+
+    <br/> {% endfor %}
+</table>
+
+{% else %} no hay datos {% endif %} {%endblock contenedor%}

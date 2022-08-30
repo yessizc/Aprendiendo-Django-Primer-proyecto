@@ -1,0 +1,33 @@
+{%extends "planta/base.html"%} {%load static%} {%block contenedor%}
+
+<h2>Formulario</h2>
+
+<form action="{% url 'planta:guardarTrabajador'%}" method="post">
+
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="fname">Nombre:</label><br>
+        <input type="text" name="nombre" value=""><br>
+    </div>
+    <label for="lname">Apellido:</label><br>
+    <input type="text" name="apellido" value=""><br><br>
+    <div class="form-group">
+
+        <div class="form-group">
+            <label ftype="number">Cedula:</label><br>
+            <input type="number" name="cedula" n value=""><br><br>
+        </div>
+
+        <div class="form-group">
+
+            <label for="lname">Correo:</label><br>
+            <input type="email" name="correo" value=""><br><br>
+        </div>
+
+
+
+        <input type="submit" value="guardar">
+</form>
+
+{%endblock%}

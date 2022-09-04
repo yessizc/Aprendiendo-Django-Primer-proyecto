@@ -55,4 +55,5 @@ def guardarTrabajador (request):
         messages.error(request,f"error: {e}")
            
     return redirect('planta:listarTrabajador')
-    
+## prueba
+

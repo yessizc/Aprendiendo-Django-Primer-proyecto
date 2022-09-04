@@ -25,13 +25,20 @@ def listarTrabajador (request):
     context = {"datos":q}
     return render(request, 'planta/trabajador/listar_trabajador.html',context)
 
-def formularioTrabajador (request):
-    return render(request,'planta/trabajador/nuevo_trabajador.html')
+def formularioTrabajador (request, id):
+    print(id)
+    if id != 0:
+        q = Trabajador.objects.get(pk = id) 
+        context = {"trabajador":q}
+        return render(request, 'planta/trabajador/nuevo_trabajador.html',context)
+    else:
+        t = {'id':id}
+        context = {"trabajador":t}
+        return render(request,'planta/trabajador/nuevo_trabajador.html', context)
 
 
 def guardarTrabajador (request):
-    ('cedula','nombre','apellido','correo',)
-    
+    print("save")
     try:
         if request.method=="POST":
         
@@ -44,10 +51,10 @@ def guardarTrabajador (request):
             q.save()
         #si todo esta bien.
             messages.success(request," El trabajador fue guardado correctamente!")
-            messages.info(request," probando info!")
-            messages.warning(request," probando warning!")
-            messages.debug(request," probando debug")
-            messages.error(request," probando error")
+            #messages.info(request," probando info!")
+            #messages.warning(request," probando warning!")
+            #messages.debug(request," probando debug")
+            #messages.error(request," probando error")
         
         else:
             messages.warning(request,"no se han eviado los datos correctamente...")
@@ -55,5 +62,43 @@ def guardarTrabajador (request):
         messages.error(request,f"error: {e}")
            
     return redirect('planta:listarTrabajador')
-## prueba
 
+
+def editarTrabajador (request, id):
+    print("update")
+    try :
+        if request.method=="POST":
+
+            trabajador = Trabajador.objects.get(pk = id)
+            trabajador.cedula = request.POST["cedula"]
+            trabajador.nombre = request.POST ["nombre"]
+            trabajador.apellido = request.POST["apellido"]
+            trabajador.correo = request.POST["correo"]
+
+            trabajador.save()
+            messages.success(request," El trabajador fue editado correctamente!")
+
+        else:
+            messages.warning(request,"no se han eviado los datos correctamente...")
+    except Exception as e:
+        messages.error(request,f"error: {e}")
+           
+    return redirect('planta:listarTrabajador')
+
+
+def eliminarTrabajador (request, id):
+    try:
+        print(id)
+        trabajador = Trabajador.objects.get(pk = id)
+        trabajador.delete()
+        messages.success(request," El trabajador se ha eliminado correctamente!")
+
+    except Exception as e:
+        messages.error(request,f"error: {e}")
+           
+    return redirect('planta:listarTrabajador')
+
+
+
+
+    

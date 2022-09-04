@@ -18,7 +18,7 @@
     <link rel=" icon " type="image/png " sizes="32x32 " href="{% static 'planta/favicon_io/favicon-32x32.png'%}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'planta/favicon_io/favicon-16x16.png'%}">
     <link rel=" manifest " href="{% static 'planta/favicon_io/site.webmanifest'%}">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'planta/css/datatables.min.css' %} "/>
 </head>
 
 <body>
@@ -61,10 +61,14 @@
             </div>
         </div>
     </nav>
-    {%block contenedor%} --------{%endblock%}
+    <div class="container"><br>
+        {%block contenedor%} -------- {%endblock%}
+    </div>
 
 
 
     <script src="{% static 'planta/js/popper.min.js'%}"></script>
     <script src="{% static 'planta/js/libreria.js'%}"></script>
     <script src="{% static 'planta/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'planta/js/jquery-3.6.1.js'%}"></script>
+    <script type="text/javascript" src="{% static 'planta/js/datatables.min.js' %}"></script>

@@ -97,6 +97,7 @@ def eliminarTrabajador (request, id):
         messages.error(request,f"error: {e}")
            
     return redirect('planta:listarTrabajador')
+    #test
 
 
 
